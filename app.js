@@ -27,6 +27,7 @@ app.use("/customer", verifyToken, customerRoutes);
 app.use("/auth", authRoutes);
 
 async function connectDb() {
+    console.log("MONGO_URI =", process.env.MONGO_URI); // add ye line temporarily
     await mongoose.connect(process.env.MONGO_URI, {
         dbName: "e-comm-store-db",
     });
