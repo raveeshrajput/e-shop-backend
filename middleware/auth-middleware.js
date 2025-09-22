@@ -1,3 +1,4 @@
+require('dotenv').config();   // env variables load karne ke liye
 const jwt = require("jsonwebtoken");
 const { model } = require("mongoose");
 
@@ -9,7 +10,7 @@ function verifyToken(req, res, next){
         });
     }
     try {
-        const decode = jwt.verify(token, "secret");
+        const decode = jwt.verify(token, process.env.JWT_SECRET);
         console.log(decode);
         req.user=decode;
         next();
