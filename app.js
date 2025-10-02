@@ -13,7 +13,11 @@ const customerRoutes = require("./routes/customer");
 const authRoutes = require('./routes/auth');
 const { verifyToken, isAdmin } = require('./middleware/auth-middleware');
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://e-shop-frontend-izsfjxynh-raveesh-rajputs-projects.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json());
 
 app.get('/', (req, res) => {
