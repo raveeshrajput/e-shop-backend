@@ -14,9 +14,7 @@ const authRoutes = require('./routes/auth');
 const { verifyToken, isAdmin } = require('./middleware/auth-middleware');
 
 app.use(cors({
-  origin: ["http://localhost:4200", 'https://e-shop-frontend-xi.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  origin: "*"
 }));
 
 app.use(express.json());
