@@ -25,10 +25,10 @@ app.get('/', (req, res) => {
     res.send("server running");
 });
 
-app.use("/category", verifyToken, isAdmin, categoryRoutes);
-app.use("/brand", verifyToken, isAdmin, brandRoutes);
-app.use("/product", verifyToken, isAdmin, productRoutes);
-app.use("/customer", verifyToken, customerRoutes);
+app.use("/category", isAdmin, categoryRoutes);
+app.use("/brand", isAdmin, brandRoutes);
+app.use("/product", isAdmin, productRoutes);
+app.use("/customer", customerRoutes);
 app.use("/auth", authRoutes);
 
 async function connectDb() {
