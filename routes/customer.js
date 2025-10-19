@@ -4,6 +4,8 @@ const { getCategories } = require("../handlers/category-handler");
 const { getWishlist, addToWishlist, removeFromWishlist,  } = require("./../handlers/wishlist-handler");
 const { getCartItems, addToCart, removeFromCart} = require("./../handlers/shopping-cart-handler");
 const { getBrands } = require("../handlers/brand-handler");
+const { verifyToken } = require("../middlewares/auth-middleware"); // middleware import
+
 const router = express.Router();
 
 router.get("/new-products", async (req, res)=>{
@@ -36,6 +38,9 @@ router.get("/product/:id", async (req, res)=>{
     const product = await getProduct(id);
     res.send(product);
 });
+
+// Protected routes (require token)
+router.use(verifyToken); // ye line niche ke sab routes ko protect karegi
 
 router.get("/wishlists", async (req, res)=>{
     console.log(req.user);

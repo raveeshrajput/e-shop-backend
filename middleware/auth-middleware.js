@@ -1,18 +1,25 @@
-require('dotenv').config();   // env variables load karne ke liye
+require('dotenv').config();
 const jwt = require("jsonwebtoken");
-const { model } = require("mongoose");
 
 function verifyToken(req, res, next){
-    const token = req.header('Authorization');
-    if(!token){
+    const authHeader = req.header('Authorization');
+    if(!authHeader){
         return res.status(401).send({
             error: "Access denied",
         });
     }
+
+    const token = authHeader.split(" ")[1]; // Bearer <token>
+    if(!token){
+        return res.status(401).send({
+            error: "Token missing",
+        });
+    }
+
     try {
         const decode = jwt.verify(token, process.env.JWT_SECRET);
         console.log(decode);
-        req.user=decode;
+        req.user = decode;  // important: req.user set karna
         next();
     } catch(err){
         return res.status(401).send({
