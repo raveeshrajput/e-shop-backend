@@ -4,7 +4,7 @@ const { getCategories } = require("../handlers/category-handler");
 const { getWishlist, addToWishlist, removeFromWishlist,  } = require("./../handlers/wishlist-handler");
 const { getCartItems, addToCart, removeFromCart} = require("./../handlers/shopping-cart-handler");
 const { getBrands } = require("../handlers/brand-handler");
-const { verifyToken } = require("../middlewares/auth-middleware"); // middleware import
+const { verifyToken } = require("../middleware/auth-middleware"); // middleware import
 
 const router = express.Router();
 
