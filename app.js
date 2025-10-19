@@ -14,10 +14,11 @@ const authRoutes = require('./routes/auth');
 const { verifyToken, isAdmin } = require('./middleware/auth-middleware');
 
 app.use(cors({
-  origin: ['https://e-shop-frontend-izsfjxynh-raveesh-rajputs-projects.vercel.app'],
+  origin: ["http://localhost:4200", 'https://e-shop-frontend-xi.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
